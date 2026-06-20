@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "SALAM TECH — Business Systemization Platform"
+version = "1.0.0"
+id = "artifacts/salam-tech"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18725
+
+[services.development]
+run = "pnpm --filter @workspace/salam-tech run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/salam-tech", "run", "build" ]
+publicDir = "artifacts/salam-tech/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18725"
+BASE_PATH = "/"
